@@ -1,0 +1,9 @@
+[class^="stack"] {
+  display: flex;
+  flex-direction: column;
+}
+.stack-xsmall > *:not(:last-child) { margin-bottom: 8px; }
+.stack-small  > *:not(:last-child) { margin-bottom: 16px; }
+.stack-medium > *:not(:last-child) { margin-bottom: 24px; }
+.stack-large  > *:not(:last-child) { margin-bottom: 32px; }
+.stack-xlarge > *:not(:last-child) { margin-bottom: 48px; }
