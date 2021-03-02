@@ -1,7 +1,1 @@
-import StackComponent from './components/stack';
-
-const componentMap = {
-  stack: StackComponent,
-}
-
-export default componentMap;
+export { default as Stack } from './components/stack';
