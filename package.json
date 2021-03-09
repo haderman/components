@@ -1,6 +1,6 @@
 {
   "name": "@hadermania/components",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "repository": "git@github.com:haderman/components.git",
