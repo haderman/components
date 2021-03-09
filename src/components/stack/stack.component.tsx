@@ -14,7 +14,7 @@ interface StackComponentProps {
  */
 
 export default function Stack({ space = 'medium', as: ElementType = 'div', children }: StackComponentProps) {
-  const containerClass = `stack-${space}`;
+  const containerClass = `hadermania-stack-${space} hadermania-felx-container`;
   return (
     <ElementType className={containerClass}>
       {children}
