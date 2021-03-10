@@ -30,7 +30,8 @@ export default {
       plugins: [autoprefixer()],
       sourceMap: true,
       extract: true,
-      minimize: true
+      minimize: true,
+      extensions: ['.css'],
     }),
   ],
   external: [
