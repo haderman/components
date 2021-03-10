@@ -1,41 +1,41 @@
 import typescript from "rollup-plugin-typescript2";
+import svg from 'rollup-plugin-svg';
+import autoprefixer from 'autoprefixer';
+import postcss from 'rollup-plugin-postcss';
 import pkg from "./package.json";
 
-const extensions = [".js", ".jsx", ".ts", ".tsx"];
-const input = "src/index.ts";
-
-const plugins = [
-  typescript({
-    typescript: require("typescript"),
-  }),
-];
-
-// just above plugins declaration add
-const external = [
-  ...Object.keys(pkg.dependencies || {}),
-  ...Object.keys(pkg.peerDependencies || {}),
-];
-
-// then for each output declaration add external key and value
-export default [
-  {
-    input,
-    output: {
-      file: pkg.module,
-      format: "esm",
-      sourcemap: true,
-    },
-    plugins,
-    external,
-  },
-  {
-    input,
-    output: {
-      file: pkg.main,
-      format: "cjs",
-      sourcemap: true,
-    },
-    plugins,
-    external,
-  },
-];
+export default {
+  preserveModules: true,
+  input: './src/index.ts',
+  output: [
+    { file: pkg.main, format: 'cjs', exports: 'named' },
+    { file: pkg.module, format: 'es', exports: 'named' },
+  ],
+  preserveModules: true,
+  input: './src/index.ts',
+  output: [
+    {
+      dir: './dist',
+      format: 'cjs'
+    }
+  ],
+  plugins: [
+    typescript({
+      typescript: require('typescript'),
+    }),
+    svg({
+      base64: true,
+    }),
+    postcss({
+      plugins: [autoprefixer()],
+      sourceMap: true,
+      extract: true,
+      minimize: true,
+      extensions: ['.css'],
+    }),
+  ],
+  external: [
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {}),
+  ],
+};

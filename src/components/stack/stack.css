@@ -1,9 +1,10 @@
-[class^="stack"] {
+.hadermania-felx-container {
   display: flex;
   flex-direction: column;
 }
-.stack-xsmall > *:not(:last-child) { margin-bottom: 8px; }
-.stack-small  > *:not(:last-child) { margin-bottom: 16px; }
-.stack-medium > *:not(:last-child) { margin-bottom: 24px; }
-.stack-large  > *:not(:last-child) { margin-bottom: 32px; }
-.stack-xlarge > *:not(:last-child) { margin-bottom: 48px; }
+
+.hadermania-stack-xsmall > *:not(:last-child) { margin-bottom: 8px; }
+.hadermania-stack-small  > *:not(:last-child) { margin-bottom: 16px; }
+.hadermania-stack-medium > *:not(:last-child) { margin-bottom: 24px; }
+.hadermania-stack-large  > *:not(:last-child) { margin-bottom: 32px; }
+.hadermania-stack-xlarge > *:not(:last-child) { margin-bottom: 48px; }
