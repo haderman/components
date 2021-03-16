@@ -1,8 +1,6 @@
 name: Publish package
-on:
-  push:
-    branches:
-      - main
+
+on: workflow_dispatch
 
 jobs:
   publish:
@@ -20,19 +18,3 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
-# name: prerelease package
-# on:
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   prerelease:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v1
-#       - name: Make prerelease to npm
-#         uses: epeli/npm-release@v1
-#         with:
-#           type: prerelease
-#           token: ${{ secrets.NPM_TOKEN }}
