@@ -1,22 +1,39 @@
-name: Publish package
+# name: Publish package
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   publish:
+#     name: Publish
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v1
+#       - uses: actions/setup-node@v1
+#         with:
+#           node-version: 12
+#       - run: npm install -g yarn
+#       - run: yarn install
+#       - run: npm version patch
+#       - run: yarn run build
+#       - uses: JS-DevTools/npm-publish@v1
+#         with:
+#           token: ${{ secrets.NPM_TOKEN }}
+
+name: prerelease package
 on:
   push:
     branches:
       - main
 
 jobs:
-  publish:
-    name: Publish
+  prerelease:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Make prerelease to npm
+        uses: epeli/npm-release@v1
         with:
-          node-version: 12
-      - run: npm install -g yarn
-      - run: yarn install
-      - run: npm version patch
-      - run: yarn run build
-      - uses: JS-DevTools/npm-publish@v1
-        with:
+          type: prerelease
           token: ${{ secrets.NPM_TOKEN }}
