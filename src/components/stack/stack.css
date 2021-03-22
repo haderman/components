@@ -1,7 +1,6 @@
 .hadermania-felx-container {
   display: flex;
   flex-direction: column;
-  background-color: red;
 }
 
 .hadermania-stack-xsmall > *:not(:last-child) { margin-bottom: 8px; }
