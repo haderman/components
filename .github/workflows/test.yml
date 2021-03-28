@@ -1,4 +1,4 @@
-name: Publish package
+name: Test
 
 on:
   pull_request:
