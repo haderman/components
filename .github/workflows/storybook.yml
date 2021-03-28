@@ -1,8 +1,6 @@
 name: Deploy on github pages
 
-on:
-  push:
-    paths: [src/**"]
+on: push
 
 jobs:
   build-and-deploy:
