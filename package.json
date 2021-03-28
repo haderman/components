@@ -6,6 +6,23 @@
   "repository": "git@github.com:haderman/components.git",
   "author": "Hader Cardona <hadermania@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "npx rollup -c",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -o docs-build"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@storybook/addon-actions": "^6.1.15",
@@ -32,23 +49,6 @@
   },
   "peerDependencies": {
     "react": "^17.0.1"
-  },
-  "scripts": {
-    "build": "npx rollup -c",
-    "test": "jest",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs-build"
-  },
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ]
   },
   "dependencies": {
     "postcss": "^8.2.6"
