@@ -3,15 +3,11 @@ https://www.grzegorowski.com/react-typescript-library-rollup-jest-initialization
 
 # components
 
-publish package
+## publish package
 
-https://docs.npmjs.com/cli/v7/commands/npm-version
+Run workflow: **Publish package** `(publish.yml)`
 
-`npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]`
-
-`yarn run dev`
-
-`npm publish --access public`
+Docs how to update npm version: https://docs.npmjs.com/cli/v7/commands/npm-version
 
 
 
