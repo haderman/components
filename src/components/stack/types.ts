@@ -1,7 +1,9 @@
-export type Space = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+export const Space = [
+  'xsmall',
+  'small',
+  'medium',
+  'large',
+  'xlarge'
+] as const;
 
-export const Space = {
-  toArray(): Space[] {
-    return ['xsmall', 'small', 'medium', 'large', 'xlarge']
-  }
-}
+export type Space = typeof Space[number];

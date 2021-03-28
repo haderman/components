@@ -10,9 +10,9 @@ export default {
       description: 'add a margin bottom to all direct children',
       control: {
         type: 'radio',
-        options: Space.toArray(),
+        options: Space,
       },
-      defaultValue: Space.toArray()[0]
+      defaultValue: Space[0]
     }
   },
 };
