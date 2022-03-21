@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import { CardProps, Mode } from './types';
 
@@ -13,7 +14,7 @@ export default function Card(props: CardProps) {
   };
 
   return (
-    <Layout data-mode={mode} onClick={toggleMode}>
+    <Layout as={motion.div} data-mode={mode} onClick={toggleMode}>
       <Title>{props.title}</Title>
       <Description>{props.description}</Description>
       <AvatarContainer>

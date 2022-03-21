@@ -52,6 +52,7 @@
     "react": "^17.0.1"
   },
   "dependencies": {
+    "framer-motion": "4",
     "postcss": "^8.2.6",
     "styled-components": "^5.3.3"
   }

@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import Card from './card.component';
-import { CardProps } from './types';
 
 export default {
   title: 'Example/Card',
