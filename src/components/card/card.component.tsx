@@ -1,20 +1,50 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, useCycle, Variant } from 'framer-motion';
 
 import { CardProps, Mode } from './types';
 
 const AVATAR_URL = 'https://i.picsum.photos/id/499/536/354.jpg?hmac=8f-M63IkmYvH2AXKVRL_mE-G5R9N1Qbt2rAPNq_rXvs';
 
+const variants: {[key in Mode]: Variant} = {
+  collapsed: {
+    height: '128px',
+    transition: {
+      transition: {
+        staggerChildren: 0.07,
+        delayChildren: 0.2,
+      },
+    }
+  },
+  expanded: {
+    height: '100%',
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+};
+
 export default function Card(props: CardProps) {
   const [mode, setMode] = React.useState<Mode>('collapsed');
+  const [animate, toggleFocus] = useCycle(
+    { height: "25rem", top: "0rem", overflowX: "auto" },
+    { height: "100%", top: "-4.4rem", overflowX: "hidden" }
+  )
 
   const toggleMode = () => {
     setMode(mode === 'collapsed' ? 'expanded' : 'collapsed');
+    // toggleFocus();
   };
 
+
   return (
-    <Layout as={motion.div} data-mode={mode} onClick={toggleMode}>
+    <Layout
+      data-mode={mode}
+      onClick={toggleMode}
+      animate={mode}
+      variants={variants}
+    >
       <Title>{props.title}</Title>
       <Description>{props.description}</Description>
       <AvatarContainer>
@@ -47,7 +77,7 @@ const Avatar = styled.img`
   object-fit: cover;
 `;
 
-const Layout = styled.div`
+const Layout = styled(motion.div)`
   max-width: 600px;
   display: grid;
   cursor: pointer;
@@ -60,7 +90,6 @@ const Layout = styled.div`
       "avatar title"
       "avatar description";
     ;
-    height: 128px;
 
     ${AvatarContainer} {
       height: 100%;
