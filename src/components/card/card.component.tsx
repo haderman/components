@@ -1,18 +1,20 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { motion, useCycle, Variant } from 'framer-motion';
+import { motion, useCycle, Variant, AnimatePresence } from 'framer-motion';
 
 import { CardProps, Mode } from './types';
 
 const AVATAR_URL = 'https://i.picsum.photos/id/499/536/354.jpg?hmac=8f-M63IkmYvH2AXKVRL_mE-G5R9N1Qbt2rAPNq_rXvs';
 
+const CARD_COLLPASED_HEIGHT = '328px';
+
 const variants: {[key in Mode]: Variant} = {
   collapsed: {
-    height: '128px',
+    height: CARD_COLLPASED_HEIGHT,
     transition: {
       transition: {
         staggerChildren: 0.07,
-        delayChildren: 0.2,
+        delayChildren: 0.02,
       },
     }
   },
@@ -27,69 +29,71 @@ const variants: {[key in Mode]: Variant} = {
 
 export default function Card(props: CardProps) {
   const [mode, setMode] = React.useState<Mode>('collapsed');
-  const [animate, toggleFocus] = useCycle(
-    { height: "25rem", top: "0rem", overflowX: "auto" },
-    { height: "100%", top: "-4.4rem", overflowX: "hidden" }
-  )
 
-  const toggleMode = () => {
+  function toggleMode() {
     setMode(mode === 'collapsed' ? 'expanded' : 'collapsed');
-    // toggleFocus();
   };
 
-
   return (
-    <Layout
-      data-mode={mode}
-      onClick={toggleMode}
-      animate={mode}
-      variants={variants}
-    >
-      <Title>{props.title}</Title>
-      <Description>{props.description}</Description>
-      <AvatarContainer>
-        <Avatar src={AVATAR_URL} />
-      </AvatarContainer>
-    </Layout>
+    <Skeleton>
+      <Layout
+        layout
+        data-mode={mode}
+        onClick={toggleMode}
+        animate={mode}
+        variants={variants}
+      >
+        <Title layout>{props.title}</Title>
+        <Description layout>{props.description}</Description>
+        <AvatarContainer layout>
+          <Avatar layout src={AVATAR_URL} />
+        </AvatarContainer>
+      </Layout>
+    </Skeleton>
   );
 }
 
-const Title = styled.h2`
+const Title = styled(motion.h2)`
   color: hsl(0, 0%, 80%);
   padding: 12px;
   margin: 0;
 `;
 
-const Description = styled.p`
+const Description = styled(motion.p)`
   color: hsl(0, 0%, 80%);
   padding: 12px;
   margin: 0;
 `;
 
-const AvatarContainer = styled.div`
+const AvatarContainer = styled(motion.picture)`
   position: relative;
 `;
 
-const Avatar = styled.img`
+const Avatar = styled(motion.img)`
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
+const Skeleton = styled.div`
+  height: ${CARD_COLLPASED_HEIGHT};
+  max-width: 400px;
+  width: 100%;
+`;
+
 const Layout = styled(motion.div)`
-  max-width: 600px;
   display: grid;
   cursor: pointer;
 
   &[data-mode='collapsed'] {
     position: relative;
-    grid-template-columns: 30% 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60%  20% 20%;
     grid-template-areas:
-      "avatar title"
-      "avatar description";
-    ;
+      "avatar"
+      "title"
+      "description";
 
     ${AvatarContainer} {
       height: 100%;
@@ -98,7 +102,7 @@ const Layout = styled(motion.div)`
   }
 
   &[data-mode='expanded'] {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
